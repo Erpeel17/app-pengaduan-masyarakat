@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->text('content');
-            $table->string('image');
-            $table->enum('status', ['0', 'process', 'done']);
+            $table->string('image')->nullable();
+            $table->enum('status', ['0', 'process', 'done'])->default('0');
             $table->timestamps();
         });
     }
