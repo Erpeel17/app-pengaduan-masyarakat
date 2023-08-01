@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\registerController;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ComplaintController::class, 'index']);
+Route::get('/', [ComplaintController::class, 'index'])->middleware('auth');
 Route::get('/create', [ComplaintController::class, 'create']);
 
-Route::get('/login', [loginController::class, 'index']);
+Route::get('/login', [loginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [loginController::class, 'login'])->middleware('guest');
+Route::post('/logout', [loginController::class, 'logout'])->middleware('auth');
+
 Route::get('/register', [registerController::class, 'index']);
+Route::post('/register', [registerController::class, 'store']);
 
 Route::get('/responses', [ResponseController::class, 'index']);
 Route::get('/response/create', [ResponseController::class, 'create']);
+
+Route::get('/dashboard', [adminController::class, 'index']);

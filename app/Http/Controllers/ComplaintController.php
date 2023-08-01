@@ -11,11 +11,18 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        return view('index');
+        return view('index', [
+            "title" => "pengaduan masyarakat",
+            "user" => auth()->user(),
+            "complaints" => auth()->user()->complaints
+        ]);
     }
 
     public function create()
     {
-        return view('create');
+        return view('create', [
+            "title" => "buat pengaduan",
+            "message" => "ini adalah halaman untuk membuat pengaduan"
+        ]);
     }
 }
