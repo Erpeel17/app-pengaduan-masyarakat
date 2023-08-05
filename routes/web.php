@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ComplaintController::class, 'index'])->middleware('auth');
-Route::get('/create', [ComplaintController::class, 'create']);
+Route::get('/create', [ComplaintController::class, 'create'])->middleware('auth');
+Route::post('/store', [ComplaintController::class, 'store'])->middleware('auth');
 
 Route::get('/login', [loginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [loginController::class, 'login'])->middleware('guest');
@@ -32,3 +33,5 @@ Route::get('/responses', [ResponseController::class, 'index']);
 Route::get('/response/create', [ResponseController::class, 'create']);
 
 Route::get('/dashboard', [adminController::class, 'index']);
+Route::get('/dashboard/process', [adminController::class, 'onProcess']);
+Route::get('/dashboard/done', [adminController::class, 'done']);

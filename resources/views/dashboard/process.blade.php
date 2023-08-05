@@ -1,7 +1,7 @@
 @extends('dashboard.dashboard')
 
 @section('container')
-    <h2>Pengaduan</h2>
+    <h2>Pengaduan dalam proses</h2>
     <table class="table table-striped">
         <thead>
           <tr>

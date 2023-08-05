@@ -54,7 +54,7 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-body-tertiary">
 
     <main class="container">
         @yield('container')

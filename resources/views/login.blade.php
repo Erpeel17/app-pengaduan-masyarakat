@@ -18,7 +18,7 @@
 
                     <div class="form-floating">
                         <input type="text" class="form-control rounded-top"
-                            name="username" placeholder="name@example.com" autofocus required>
+                            name="username" placeholder="name@example.com" autofocus autocomplete="off" required>
                         <label for="floatingInput">username</label>
                         @error('username')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -26,8 +26,7 @@
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control rounded-bottom" name="password" placeholder="Password"
-                            required>
+                        <input type="password" class="form-control rounded-bottom" name="password" placeholder="Password" autocomplete="off" required>
                         <label for="floatingPassword">Password</label>
                     </div>
 

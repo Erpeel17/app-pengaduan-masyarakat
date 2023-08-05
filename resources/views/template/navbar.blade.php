@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-white shadow-sm position-sticky top-0 z-3">
     <div class="container">
-        <a class="navbar-brand fw-semibold" href="/">NepTodo</a>
+        <a class="navbar-brand fw-bold" href="/"><i class="bi bi-chat-square-text-fill text-primary"></i> Pengaduan Masyarakat</a>
         @if (auth()->user())
             <div class="justify-content-end dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

@@ -10,7 +10,7 @@
 
                     <div class="form-floating">
                         <input type="text" class="form-control rounded-top @error('nik') is-invalid @enderror"
-                            placeholder="name@example.com" name="nik" value="{{ old('nik') }}" required>
+                            placeholder="name@example.com" name="nik" value="{{ old('nik') }}" autocomplete="off" required>
                         <label for="floatingInput">NIK</label>
                         @error('nik')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-floating">
                         <input type="text" class="form-control rounded-top @error('name') is-invalid @enderror"
-                            placeholder="name@example.com" name="name" value="{{ old('name') }}" required>
+                            placeholder="name@example.com" name="name" value="{{ old('name') }}" autocomplete="off" required>
                         <label for="floatingInput">Name</label>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-floating">
                         <input type="text" class="form-control @error('username') is-invalid @enderror"
-                            placeholder="name@example.com" name="username" value="{{ old('username') }}" required>
+                            placeholder="name@example.com" name="username" value="{{ old('username') }}" autocomplete="off" required>
                         <label for="floatingInput">Username</label>
                         @error('username')
                             <div class="invalid-feedback">{{ $message }}</div>
