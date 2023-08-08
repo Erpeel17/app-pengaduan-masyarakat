@@ -19,17 +19,34 @@
         </div>
         
         <ol class="list-group list-group-numbered">
-            @foreach ($complaints as $complaint)
-            <li class="list-group-item d-flex justify-content-between align-items-start">
+        @foreach ($complaints as $complaint)
+            <li class="list-group-item d-flex justify-content-between align-items-start mt-3">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">{{ $complaint->category->name }}</div>
                     {{-- <p>{{ substr($complaint->content, 0, 30) }}</p> --}}
                     <p class="mt-1">{{ $complaint->content }}</p>
                 </div>
-                <span class="badge bg-primary rounded-pill">{{ $complaint->status }}</span>
+                    <span @class(['badge rounded-pill',
+                                            'd-hidden' => $complaint->status == '0',
+                                            'bg-primary' => $complaint->status == 'process',
+                                            'bg-success' => $complaint->status == 'done',
+                                            'bg-danger' => $complaint->status == 'rejected',
+                                            ])>{{ $complaint->status }}</span>
+                
             </li>
+
+            <ul class="list-group">
+            @foreach ($complaint->responses as $response)
+                <li class="list-group-item d-flex justify-content-between align-items-start ps-5 bg-body-secondary border pb-0">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold text-secondary">{{ $response->user->name }}</div>
+                        <p class="mt-1">{{ $response->content }}</p>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
             @endforeach
         </ol>
-        @endsection
     </div>
 </div>
+@endsection

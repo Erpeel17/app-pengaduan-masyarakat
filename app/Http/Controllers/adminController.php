@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complaint;
+use App\Models\Response;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -14,9 +15,9 @@ class adminController extends Controller
         }
 
         return view('dashboard.index', [
-            'title' => 'dashboard',
+            'title' => 'Pengaduan',
             'active' => 'pengaduan',
-            'complaints' => Complaint::all()->where('status', '0')
+            'complaints' => Complaint::where('status', '0')->get()
         ]);
     }
 
@@ -26,10 +27,10 @@ class adminController extends Controller
             return redirect('/');
         }
 
-        return view('dashboard.process', [
-            'title' => 'dashboard',
+        return view('dashboard.index', [
+            'title' => 'Pengaduan dalam proses',
             'active' => 'proses',
-            'complaints' => Complaint::all()->where('status', 'process')
+            'complaints' => Complaint::where('status', 'process')->get()
         ]);
     }
 
@@ -39,10 +40,49 @@ class adminController extends Controller
             return redirect('/');
         }
 
-        return view('dashboard.done', [
-            'title' => 'dashboard',
+        return view('dashboard.index', [
+            'title' => 'Pengaduan selesai',
             'active' => 'selesai',
-            'complaints' => Complaint::all()->where('status', 'done')
+            'complaints' => Complaint::where('status', 'done')->get()
         ]);
+    }
+
+    public function response(Complaint $complaint)
+    {
+        if (auth()->user()->role == 'user') {
+            return redirect('/');
+        }
+
+        if ($complaint->status == 'process') {
+            $active = 'proses';
+        } else if ($complaint->status == 'done') {
+            $active = 'selesai';
+        } else {
+            $active = 'pengaduan';
+        }
+
+        return view('dashboard.response', [
+            'title' => 'dashboard',
+            'active' => $active,
+            'complaint' => $complaint
+        ]);
+    }
+
+    public function storeResponse(Request $request)
+    {
+        if (auth()->user()->role == 'user') {
+            return redirect('/');
+        }
+
+        $validated = $request->validate([
+            'complaint_id' => 'required',
+            'content' => 'required',
+        ]);
+
+        $validated['user_id'] = auth()->user()->id;
+
+        Complaint::find($request->complaint_id)->update(['status' => $request->status]);
+        Response::create($validated);
+        return redirect('/dashboard');
     }
 }

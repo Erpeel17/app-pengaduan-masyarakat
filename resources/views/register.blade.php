@@ -17,7 +17,7 @@
                         @enderror
                     </div>
                     <div class="form-floating">
-                        <input type="text" class="form-control rounded-top @error('name') is-invalid @enderror"
+                        <input type="text" class="form-control @error('name') is-invalid @enderror"
                             placeholder="name@example.com" name="name" value="{{ old('name') }}" autocomplete="off" required>
                         <label for="floatingInput">Name</label>
                         @error('name')
@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-floating">
                         <input type="text" class="form-control rounded-bottom @error('password') is-invalid @enderror"
-                            placeholder="Password" name="password" required>
+                            placeholder="Password" name="password" autocomplete="off" required>
                         <label for="floatingPassword">Password</label>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained();
             $table->text('content');
             $table->string('image')->nullable();
-            $table->enum('status', ['0', 'process', 'done'])->default('0');
+            $table->enum('status', ['0', 'process', 'done', 'rejected'])->default('0');
             $table->timestamps();
         });
     }
