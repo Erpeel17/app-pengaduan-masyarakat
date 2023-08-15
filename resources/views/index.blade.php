@@ -4,7 +4,7 @@
 @section('container')
 
 <div class="row">
-    <div class="col-8 m-auto">
+    <div class="col-md-8 m-auto">
         <div class="row">
             <div class="col-7">
                 @if ($complaints->count() < 1)
@@ -18,11 +18,11 @@
             </div>
         </div>
         
-        <ol class="list-group list-group-numbered">
+        <ol class="list-group">
         @foreach ($complaints as $complaint)
             <li class="list-group-item d-flex justify-content-between align-items-start mt-3">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{ $complaint->category->name }}</div>
+                    <div class="fw-bold text-primary">{{ $complaint->category->name }}</div>
                     {{-- <p>{{ substr($complaint->content, 0, 30) }}</p> --}}
                     <p class="mt-1">{{ $complaint->content }}</p>
                 </div>
@@ -35,11 +35,11 @@
                 
             </li>
 
-            <ul class="list-group">
+            <ul class="list-group rounded-0 rounded-bottom">
             @foreach ($complaint->responses as $response)
                 <li class="list-group-item d-flex justify-content-between align-items-start ps-5 bg-body-secondary border pb-0">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold text-secondary">{{ $response->user->name }}</div>
+                        <div class="fw-bold">{{ $response->user->name }} ({{ $response->user->role }}) - <small class="fw-normal">{{ $response->time_ago }}</small></div>
                         <p class="mt-1">{{ $response->content }}</p>
                     </div>
                 </li>

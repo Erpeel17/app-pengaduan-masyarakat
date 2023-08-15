@@ -32,8 +32,9 @@ Route::post('/register', [registerController::class, 'store'])->middleware('gues
 Route::get('/responses', [ResponseController::class, 'index'])->middleware('auth');
 Route::get('/response/create', [ResponseController::class, 'create'])->middleware('auth');
 
-Route::get('/dashboard', [adminController::class, 'index'])->middleware('auth');
-Route::get('/dashboard/process', [adminController::class, 'onProcess'])->middleware('auth');
-Route::get('/dashboard/done', [adminController::class, 'done'])->middleware('auth');
-Route::get('/dashboard/response/{complaint}', [adminController::class, 'response'])->middleware('auth');
-Route::post('/dashboard/response', [adminController::class, 'storeResponse'])->middleware('auth');
+Route::get('/dashboard', [adminController::class, 'index'])->middleware('auth')->middleware('admin');
+
+Route::get('/dashboard/response/{complaint}', [ResponseController::class, 'create'])->middleware('auth')->middleware('admin');
+Route::post('/dashboard/response', [ResponseController::class, 'store'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/process', [ResponseController::class, 'onProcess'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/done', [ResponseController::class, 'done'])->middleware('auth')->middleware('admin');

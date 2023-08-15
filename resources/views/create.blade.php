@@ -5,7 +5,7 @@
 
 
 <div class="row">
-    <div class="col-8 m-auto">
+    <div class="col-md-8 m-auto">
         <h2 class="my-3">Buat Pengaduan</h2>
         <form action="/store" method="post">
             @csrf

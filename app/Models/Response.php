@@ -20,4 +20,9 @@ class Response extends Model
     {
         return $this->belongsTo(Complaint::class);
     }
+
+    public function getTimeAgoAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
 }
