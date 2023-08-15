@@ -41,6 +41,7 @@
                 <a href="/dashboard" @class(['list-group-item list-group-item-action', 'active' => $active == 'pengaduan'])>Pengaduan</a>
                 <a href="/dashboard/process" @class(['list-group-item list-group-item-action', 'active' => $active == 'proses'])>Pengaduan Dalam Proses</a>
                 <a href="/dashboard/done" @class(['list-group-item list-group-item-action', 'active' => $active == 'selesai'])>Pengaduan Selesai</a>
+                <a href="/dashboard/categories" @class(['list-group-item list-group-item-action', 'active' => $active == 'category'])>Kategori</a>
             </div>
             <h5 class="mt-2">User</h5>
             <div class="list-group">

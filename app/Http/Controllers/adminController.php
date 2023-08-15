@@ -17,4 +17,17 @@ class adminController extends Controller
             'users' => User::where('role', 'admin')->orWhere('role', 'officer')->get()
         ]);
     }
+
+    public function create()
+    {
+    }
+
+    public function users()
+    {
+        return view('dashboard.users', [
+            'title' => 'admin dan petugas',
+            'active' => 'allUsers',
+            'users' => User::where('role', 'user')->get()
+        ]);
+    }
 }
