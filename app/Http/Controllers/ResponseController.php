@@ -44,23 +44,4 @@ class ResponseController extends Controller
         }
         return redirect('/dashboard');
     }
-
-
-    public function onProcess()
-    {
-        return view('dashboard.index', [
-            'title' => 'Pengaduan dalam proses',
-            'active' => 'proses',
-            'complaints' => Complaint::where('status', 'process')->get()
-        ]);
-    }
-
-    public function done()
-    {
-        return view('dashboard.index', [
-            'title' => 'Pengaduan selesai',
-            'active' => 'selesai',
-            'complaints' => Complaint::where('status', 'done')->get()
-        ]);
-    }
 }

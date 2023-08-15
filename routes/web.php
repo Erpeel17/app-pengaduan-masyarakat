@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DashboardComplaintController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\ResponseController;
@@ -32,9 +33,12 @@ Route::post('/register', [registerController::class, 'store'])->middleware('gues
 Route::get('/responses', [ResponseController::class, 'index'])->middleware('auth');
 Route::get('/response/create', [ResponseController::class, 'create'])->middleware('auth');
 
-Route::get('/dashboard', [adminController::class, 'index'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard', [DashboardComplaintController::class, 'index'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/process', [DashboardComplaintController::class, 'onProcess'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/done', [DashboardComplaintController::class, 'done'])->middleware('auth')->middleware('admin');
 
 Route::get('/dashboard/response/{complaint}', [ResponseController::class, 'create'])->middleware('auth')->middleware('admin');
 Route::post('/dashboard/response', [ResponseController::class, 'store'])->middleware('auth')->middleware('admin');
-Route::get('/dashboard/process', [ResponseController::class, 'onProcess'])->middleware('auth')->middleware('admin');
-Route::get('/dashboard/done', [ResponseController::class, 'done'])->middleware('auth')->middleware('admin');
+
+Route::get('/dashboard/officers', [adminController::class, 'index']);
+Route::get('/dashboard/officers/create', [adminController::class, 'create']);

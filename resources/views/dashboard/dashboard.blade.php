@@ -36,10 +36,17 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-3">
+            <h5>Pengaduan</h5>
             <div class="list-group">
                 <a href="/dashboard" @class(['list-group-item list-group-item-action', 'active' => $active == 'pengaduan'])>Pengaduan</a>
                 <a href="/dashboard/process" @class(['list-group-item list-group-item-action', 'active' => $active == 'proses'])>Pengaduan Dalam Proses</a>
                 <a href="/dashboard/done" @class(['list-group-item list-group-item-action', 'active' => $active == 'selesai'])>Pengaduan Selesai</a>
+            </div>
+            <h5 class="mt-2">User</h5>
+            <div class="list-group">
+                <a href="/dashboard/users" @class(['list-group-item list-group-item-action', 'active' => $active == 'allUsers'])>Semua pengguna</a>
+                <a href="/dashboard/officers" @class(['list-group-item list-group-item-action', 'active' => $active == 'officers'])>Admin/petuagas</a>
+                <a href="/dashboard/officers/create" @class(['list-group-item list-group-item-action', 'active' => $active == 'createOfficer'])>Buat admin/petugas</a>
             </div>
         </div>
         <div class="col-lg-9">
