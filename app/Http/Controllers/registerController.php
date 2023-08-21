@@ -17,6 +17,7 @@ class registerController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $messages = [
             'username.not_regex' => 'Username cannot contain spaces.',
         ];

@@ -12,7 +12,7 @@ class adminController extends Controller
     public function index()
     {
         return view('dashboard.users', [
-            'title' => 'admin dan petugas',
+            'title' => 'Admin dan petugas',
             'active' => 'officers',
             'users' => User::where('role', 'admin')->orWhere('role', 'officer')->get()
         ]);
@@ -20,14 +20,28 @@ class adminController extends Controller
 
     public function create()
     {
+        return view('dashboard.createOfficer', [
+            'title' => 'Buat admin atau petugas',
+            'active' => 'createOfficer',
+            'users' => User::where('role', 'admin')->orWhere('role', 'officer')->get()
+        ]);
     }
 
     public function users()
     {
         return view('dashboard.users', [
-            'title' => 'admin dan petugas',
+            'title' => 'Semua pengguna',
             'active' => 'allUsers',
             'users' => User::where('role', 'user')->get()
+        ]);
+    }
+
+    public function user(User $user)
+    {
+        return view('dashboard.user', [
+            'title' => 'Halaman pengguna',
+            'user' => $user,
+            'complaints' => $user->complaints
         ]);
     }
 }

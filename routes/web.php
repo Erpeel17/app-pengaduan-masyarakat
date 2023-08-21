@@ -43,9 +43,10 @@ Route::post('/dashboard/response', [ResponseController::class, 'store'])->middle
 
 Route::get('/dashboard/officers', [adminController::class, 'index'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/officers/create', [adminController::class, 'create'])->middleware('auth')->middleware('admin');
-Route::post('/dashboard/officers/store', [adminController::class, 'store'])->middleware('auth')->middleware('admin');
+Route::post('/dashboard/officers/store', [registerController::class, 'store'])->middleware('auth')->middleware('admin');
 
 Route::get('/dashboard/users', [adminController::class, 'users'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/user/{user}', [adminController::class, 'user'])->middleware('auth')->middleware('admin');
 
 Route::get('/dashboard/categories', [CategoryController::class, 'index'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/categories/create', [CategoryController::class, 'create'])->middleware('auth')->middleware('admin');
