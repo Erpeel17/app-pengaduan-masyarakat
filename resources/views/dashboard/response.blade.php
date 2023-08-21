@@ -2,9 +2,31 @@
 
 @section('container')
 <h5>Pengaduan</h5>
-<div class="border rounded p-2 bg-white">
-    <p>{{ $complaint->content }}</p>
+
+<div class="list-group-item d-flex justify-content-between align-items-start mt-3 bg-white p-2 rounded-top border border-primary">
+    <div class="ms-2 me-auto">
+        <div class="fw-bold text-primary">{{ $complaint->category->name }}</div>
+        {{-- <p>{{ substr($complaint->content, 0, 30) }}</p> --}}
+        <p class="mt-1">{{ $complaint->content }}</p>
+    </div>
+        <span @class(['badge rounded-pill',
+                                'd-hidden' => $complaint->status == '0',
+                                'bg-primary' => $complaint->status == 'process',
+                                'bg-success' => $complaint->status == 'done',
+                                'bg-danger' => $complaint->status == 'rejected',
+                                ])>{{ $complaint->status }}</span>
+
 </div>
+<ul class="list-group rounded-0 rounded-bottom">
+    @foreach ($complaint->responses as $response)
+        <li class="list-group-item d-flex justify-content-between align-items-start ps-3 bg-primary-subtle border-b border-primary pb-0">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ $response->user->name }} ({{ $response->user->role }}) - <small class="fw-normal">{{ $response->time_ago }}</small></div>
+                <p class="mt-1">{{ $response->content }}</p>
+            </div>
+        </li>
+    @endforeach
+</ul>   
 
 <div>
     <form action="/dashboard/response" method="post">
