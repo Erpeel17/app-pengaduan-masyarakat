@@ -25,7 +25,7 @@ class adminController extends Controller
     public function users()
     {
         return view('dashboard.users', [
-            'title' => 'admin dan petugas',
+            'title' => 'Semua Pengguna',
             'active' => 'allUsers',
             'users' => User::where('role', 'user')->get()
         ]);
