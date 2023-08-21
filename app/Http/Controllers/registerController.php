@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class registerController extends Controller
 {
@@ -17,7 +18,6 @@ class registerController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $messages = [
             'username.not_regex' => 'Username cannot contain spaces.',
         ];
@@ -25,7 +25,7 @@ class registerController extends Controller
         $validated = $request->validate([
             'nik' => 'required|numeric',
             'name' => 'required|min:2|max:50',
-            'username' => 'required|min:2|max:50|unique:users|not_regex:/\s/',
+            'username' => 'required|min:2|max:50|unique:users,name|not_regex:/\s/',
             'password' => 'required|min:6|max:255'
         ], $messages);
 
