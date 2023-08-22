@@ -22,6 +22,10 @@ class adminController extends Controller
 
     public function create()
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('/dashboard');
+        }
+
         return view('dashboard.createOfficer', [
             'title' => 'Buat admin atau petugas',
             'active' => 'createOfficer',
@@ -40,6 +44,10 @@ class adminController extends Controller
 
     public function store(Request $request)
     {
+        if (auth()->user()->role != 'admin') {
+            return redirect('/dashboard');
+        }
+
         $messages = [
             'username.not_regex' => 'Username cannot contain spaces.',
         ];

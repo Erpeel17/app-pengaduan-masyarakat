@@ -75,6 +75,7 @@
                     <a href="/dashboard/officers/create" @class([
                         'list-group-item list-group-item-action d-flex justify-content-between',
                         'active' => $active == 'createOfficer',
+                        'disabled' => auth()->user()->role != 'admin'
                     ])>Buat admin/petugas <i
                             class="bi bi-person-fill-add"></i></a>
                 </div>
